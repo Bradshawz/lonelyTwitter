@@ -73,7 +73,7 @@ public class LonelyTwitterActivity extends Activity {
         // Get latest tweets
         // TODO: Replace with Elasticsearch
         ElasticsearchTweetController.GetTweetTask getTweetTask = new ElasticsearchTweetController.GetTweetTask();
-        getTweetTask.execute("");
+        getTweetTask.execute("test");
         try {
             tweets.addAll(getTweetTask.get());
         } catch (InterruptedException e) {

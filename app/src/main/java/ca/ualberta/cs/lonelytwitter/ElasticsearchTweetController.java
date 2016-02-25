@@ -28,7 +28,8 @@ public class ElasticsearchTweetController {
             verifyConfig();
             ArrayList<NormalTweet> tweets = new ArrayList<NormalTweet>();
             //Assume that only one string is passed in
-            String search_string = params[0];
+            String search_word = params[0];
+            String search_string = String.format("{\"query\":{\"match\":{\"message\":\"%s\"}}}", search_word);
 
             Search search = new Search.Builder(search_string).addIndex("testing").addType("tweet").build();
             try {
