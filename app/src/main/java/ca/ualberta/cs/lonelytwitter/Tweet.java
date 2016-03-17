@@ -1,5 +1,10 @@
 package ca.ualberta.cs.lonelytwitter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 import java.util.Date;
 
 /**
@@ -8,10 +13,13 @@ import java.util.Date;
 public abstract class Tweet {
     protected Date date;
     protected String message;
+    protected transient Bitmap thumbnail;
+    protected String thumbnailBase64;
 
     public Tweet(Date date, String message) {
         this.date = date;
         this.message = message;
+        this.thumbnail = thumbnail;
     }
 
     public Tweet(String message) {
@@ -38,6 +46,23 @@ public abstract class Tweet {
             throw new TweetTooLongException();
         }
         this.message = message;
+    }
+
+    public void addThumbnail(Bitmap newThumbnail) {
+        if (newThumbnail != null) {
+            thumbnail = newThumbnail;
+            ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+            byte[] b = byteArrayBitmapStream.toByteArray();
+            thumbnailBase64 = Base64.encodeToString(b, Base64.DEFAULT);
+        }
+    }
+
+    public Bitmap getThumbnail() {
+        if (thumbnail == null && thumbnailBase64 != null) {
+            byte[] decodeString = Base64.decode(thumbnailBase64, Base64.DEFAULT);
+            thumbnail = BitmapFactory.decodeByteArray(decodeString, 0, decodeString.length);
+        }
+        return thumbnail;
     }
 
     @Override
