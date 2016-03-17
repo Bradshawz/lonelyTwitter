@@ -3,12 +3,7 @@ package ca.ualberta.cs.lonelytwitter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-
-<<<<<<< HEAD
-=======
 import com.google.gson.Gson;
-
->>>>>>> 806aacd6f7a3adf5074f50d46ac555d7abe005bf
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
 
@@ -32,7 +27,7 @@ public abstract class Tweet {
     protected String thumbnailBase64;
 
 
-    public Tweet(Date date, String message) {
+    public Tweet(Date date, String message, Bitmap thumbnail) {
         this.date = date;
         this.message = message;
         this.thumbnail = thumbnail;
@@ -68,6 +63,7 @@ public abstract class Tweet {
         if (newThumbnail != null) {
             thumbnail = newThumbnail;
             ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
+            newThumbnail.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
             byte[] b = byteArrayBitmapStream.toByteArray();
             thumbnailBase64 = Base64.encodeToString(b, Base64.DEFAULT);
         }

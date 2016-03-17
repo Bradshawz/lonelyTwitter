@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class ImportantTweet extends Tweet implements Tweetable {
     public ImportantTweet(Date date, String message) {
-        super(date, message);
+        super(date, message, null);
     }
 
     public ImportantTweet(String message) {

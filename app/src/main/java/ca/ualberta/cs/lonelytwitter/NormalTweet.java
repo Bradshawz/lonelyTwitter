@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class NormalTweet extends Tweet implements Tweetable {
     public NormalTweet(Date date, String message) {
-        super(date, message);
+        super(date, message, null);
     }
 
     public NormalTweet(String message) {
