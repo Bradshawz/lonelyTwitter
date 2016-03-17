@@ -4,17 +4,33 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+<<<<<<< HEAD
+=======
+import com.google.gson.Gson;
+
+>>>>>>> 806aacd6f7a3adf5074f50d46ac555d7abe005bf
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
 
-/**
- * Created by romansky on 1/12/16.
- */
+import io.searchbox.annotations.JestId;
+
 public abstract class Tweet {
+    @JestId
+    protected String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     protected Date date;
     protected String message;
     protected transient Bitmap thumbnail;
     protected String thumbnailBase64;
+
 
     public Tweet(Date date, String message) {
         this.date = date;
